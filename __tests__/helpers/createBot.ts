@@ -1,12 +1,8 @@
 import { Bot, Context, SessionFlavor } from 'grammy';
-export interface SessionData {
-  pizzaCount: number;
-}
 
-export type MyContext = Context & SessionFlavor<SessionData>;
 
-export function createBot(token = 'fake-token') {
-  return new Bot<MyContext>(token, { 
+export function createBot<T>(token = 'fake-token') {
+  return new Bot<Context & SessionFlavor<T>>(token, { 
     botInfo: {
       id: 42,
       first_name: 'Test Bot',
