@@ -10,23 +10,24 @@ npm install @satont/grammy-redis-storage --save
 
 ## Introduction
 
-Put those values into the following example code:
+You can check [examples](https://github.com/Satont/grammy-redis-storage/tree/main/examples) folder, or simple use followed code:
 
 ```ts
 import { Bot, Context, session, SessionFlavor } from "grammy";
 import { RedisAdapter } from "@satont/grammy-redis-storage";
 
+// write session types
 interface SessionData {
   counter: number;
 }
+
+
+// create context for grammy instance
 type MyContext = Context & SessionFlavor<SessionData>;
 
-//create storage
+// create storage
+// alternatives you can pass redis connection inside of class, for example check examples folder
 const storage = new RedisAdapter({ redisUrl: 'redis://localhost:6379/0' })
-
-// alternatives you can pass redis connection inside of class
-const RedisInstance = new Redis()
-const storage = new RedisAdapter({ instance: RedisInstance })
 
 // Create bot and register session middleware
 const bot = new Bot<MyContext>("");
