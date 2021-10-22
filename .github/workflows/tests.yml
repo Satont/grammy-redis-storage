@@ -1,4 +1,4 @@
-name: Build Web and Bot
+name: Tests
 
 on: [push, workflow_dispatch]
 
