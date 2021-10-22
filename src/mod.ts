@@ -1,25 +1,17 @@
-import { StorageAdapter } from 'grammy';
-import IORedis from 'ioredis';
+import { Client, StorageAdapter } from './deps.deno.ts'
 
 export class RedisAdapter<T> implements StorageAdapter<T> {
-  private redis: IORedis.Redis
+  private redis: Client
 
   constructor({
-    redisUrl,
     instance,
-    options,
   }: {
-    redisUrl?: string,
-    instance?: IORedis.Redis,
-    options?: IORedis.RedisOptions
+    instance?: Client,
   }) {
-    if (redisUrl) {
-      const redis = new IORedis(redisUrl, options);
-      this.redis = redis;
-    } else if (instance) {
+    if (instance) {
       this.redis = instance;
     } else {
-      throw new Error('You should pass redisUrl or redis instance to constructor.');
+      throw new Error('You should pass redis instance to constructor.');
     }
 
     return this;
