@@ -11,7 +11,7 @@
     "LICENSE"
   ],
   "scripts": {
-    "test": "npx jest",
+    "test": "npx jest __tests__/node.ts",
     "prebuild": "rimraf dist",
     "build": "deno2node tsconfig.json"
   },
