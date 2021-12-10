@@ -1,14 +1,10 @@
-import { Bot, Context, SessionFlavor, session } from 'grammy';
+import { Bot, Context, session } from 'grammy';
 import { RedisAdapter } from '../dist/mod';
-import { RedisMock } from './redisMock'
-
-interface SessionData {
-  pizzaCount: number;
-}
-
+import { RedisMock } from './redisMock';
+import { createBot, createMessage } from '@satont/grammy-storage-utils';
 
 test('Pizza counter tests', async () => {
-  const bot = createBot<SessionData>();
+  const bot = createBot();
 
   bot.use(session({
     initial: () => ({ pizzaCount: 0 }),
@@ -63,40 +59,3 @@ test('Simple string tests', async () => {
   await bot.handleUpdate(createMessage(bot, 'first').update);
   await bot.handleUpdate(createMessage(bot, 'second').update);
 })
-
-function createBot<T>(token = 'fake-token') {
-  return new Bot<Context & SessionFlavor<T>>(token, { 
-    botInfo: {
-      id: 42,
-      first_name: 'Test Bot',
-      is_bot: true,
-      username: 'bot',
-      can_join_groups: true,
-      can_read_all_group_messages: true,
-      supports_inline_queries: false,
-    },
-  });
-}
-
-function createMessage(bot: Bot<any>, text = 'Test Text') {
-  const createRandomNumber = () => Math.floor(Math.random() * (123456789 - 1) + 1);
-
-  const ctx = new Context({ 
-    update_id: createRandomNumber(), 
-    message: { 
-      text,
-      message_id: createRandomNumber(),
-      chat: { 
-        id: 1,
-        type: 'private',
-        first_name: 'Test User',
-      },
-      date: Date.now(),
-    },
-  }, 
-  bot.api, 
-  bot.botInfo
-  );
-
-  return ctx;
-}
