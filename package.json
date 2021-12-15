@@ -27,7 +27,7 @@
   "homepage": "https://github.com/Satont/grammy-redis-storage#readme",
   "devDependencies": {
     "@satont/grammy-storage-utils": "^1.0.2",
-    "@types/ioredis": "^4.28.3",
+    "@types/ioredis": "^4.28.4",
     "@types/jest": "^27.0.3",
     "@types/node": "^14.18.0",
     "deno2node": "^1.0.0",
