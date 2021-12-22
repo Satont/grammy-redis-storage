@@ -1,3 +1,5 @@
+import { test, expect } from 'vitest';
+
 import { Bot, Context, session } from 'grammy';
 import { RedisAdapter } from '../dist/mod';
 import { RedisMock } from './redisMock';
