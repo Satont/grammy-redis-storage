@@ -1,3 +1,7 @@
+# ARCHIVED!!!
+
+I migrated all my storages to monorepo, check it out: https://github.com/Satont/grammy-storages
+
 # Redis storage adapter for grammY
 
 Storage adapter that can be used to
